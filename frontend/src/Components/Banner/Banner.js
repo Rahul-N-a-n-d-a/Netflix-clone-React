@@ -6,7 +6,7 @@ import { API_KEY, imageUrl } from '../../Constants/Constants'
 function Banner() {
   const [movie, setMovie] = useState()
   useEffect(() => {
-    axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then(response => { console.log(response.data.results[0]);setMovie(response.data.results[Math.round(Math.random()*20)]) })
+    axios.get(`trending/all/week?api_key=${API_KEY}&language=en-US`).then(response => { setMovie(response.data.results[Math.round(Math.random()*20)]) })
   },[])
   return (
     <div className='banner' style={{backgroundImage:`url(${movie ? imageUrl+movie.backdrop_path : ''})`}}>
