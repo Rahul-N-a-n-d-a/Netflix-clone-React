@@ -11,7 +11,7 @@ function Posters(props) {
 
   useEffect(() => {
     axios.get(props.url).then(response => { setPost(response.data.results) })
-  }, [])
+  }, []);
 
   const opts = {
     height: '390',
@@ -36,13 +36,12 @@ function Posters(props) {
     <div className='row'>
       <h2>{props.title}</h2>
       <div className="posters">
-        {post.map((obj, index) =>
-          <img onClick={() => handleMovie(obj.id)} key={index} className={props.isSmall ? 'smallPoster' : 'poster'} src={`${imageUrl + obj.backdrop_path}`} alt="poster" />
-        )}
+        {post.map((obj, index) => (
+          <img className={props.isSmall ? 'smallPoster' : 'poster'} src={`${imageUrl + obj.backdrop_path}`} alt="poster" onClick={() => handleMovie(obj.id)} />
+        ))}
       </div>
       {state && <YouTube opts={opts} videoId={video.key} />}
     </div>
-  )
-}
-
+  );
+};
 export default Posters
